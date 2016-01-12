@@ -2,7 +2,7 @@ body {
 	font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
 	line-height: 18px;
 	display: block;
-	width: 750px;
+	max-width: 100%;
 	margin: 0 auto;
 }
 
@@ -20,10 +20,15 @@ body {
 
 .main {
 	padding: 25px 25px;
+	max-width: 100%;
 }
 
 .container {
 	height: 500px;
 	max-width: 100%;
 	overflow-y: scroll;
+}
+
+.timestamp {
+	float: right;
 }
