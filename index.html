@@ -56,6 +56,11 @@
 
             $tweet.appendTo($feed);
           }
+          
+          $('.username').on('click', function (event) {
+            event.preventDefault();
+            printTweets($(this).data('user'));
+          });
         };
 
         printTweets('all');
