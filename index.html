@@ -3,23 +3,59 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="moment.min.js"></script>
   </head>
   <body>
+    <div class="main"></div>
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        var $main = $('.main');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+        var $refreshLink = $('<a href="#" class="refreshLink"></a>');
+        $refreshLink.text('Refresh Tweets');
+        $refreshLink.prependTo($main);
 
+        var $feed = $('<div></div>');
+        $feed.appendTo($main);
+
+        var printTweets = function (context) {
+          var tweet;
+          var $tweet;
+          var $user;
+          var data;
+          var index;
+
+          $feed.html('');
+
+          if (context === 'all') {
+            data = streams.home;
+          } else if (context) {
+            data = streams.users[context];
+          }
+
+          for (index = data.length - 1; index >= 0; index--) {
+            tweet = data[index];
+            $tweet = $('<div></div>');
+            $tweet.addClass('tweet');
+
+            $user = $('<a></a>');
+            $user.attr({'href': '#', 'data-user': tweet.user, 'class': 'username'});
+            $user.text('@' + tweet.user);
+            $user.appendTo($tweet);
+
+            $tweet.append(': ' + tweet.message);
+
+            $tweet.appendTo($feed);
+          }
+        };
+
+        printTweets('all');
+
+        $('.refreshLink').on('click', function(event) {
+          event.preventDefault();
+          printTweets('all');
+        });
       });
 
     </script>
