@@ -23,8 +23,10 @@
           var tweet;
           var $tweet;
           var $user;
+          var $tweetTime;
           var data;
           var index;
+          var timeAgo;
 
           $feed.html('');
 
@@ -45,6 +47,12 @@
             $user.appendTo($tweet);
 
             $tweet.append(': ' + tweet.message);
+            
+            $tweetTime = $('<span></span>');
+            $tweetTime.addClass('timestamp');
+            timeAgo = moment(tweet.created_at).fromNow();
+            $tweetTime.text(timeAgo);
+            $tweetTime.appendTo($tweet);
 
             $tweet.appendTo($feed);
           }
