@@ -1,1 +1,29 @@
+body {
+	font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	line-height: 18px;
+	display: block;
+	width: 750px;
+	margin: 0 auto;
+}
 
+.refreshLink {
+	width: 100px;
+	margin: 5px auto;
+	display: inline-block;
+	background-color: #66ccff;
+	color: #fff;
+	padding: 8px 16px;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.main {
+	padding: 25px 25px;
+}
+
+.container {
+	height: 500px;
+	max-width: 100%;
+	overflow-y: scroll;
+}
