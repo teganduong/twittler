@@ -16,6 +16,9 @@
         var $refreshLink = $('<a href="#" class="refreshLink"></a>');
         $refreshLink.text('Refresh Tweets');
         $refreshLink.prependTo($main);
+        
+        var $input = $('<input type="text" placeholder="Write a new tweet then press Enter"></input>');
+        $input.appendTo($main);
 
         var $feed = $('<div class="container"></div>');
         $feed.appendTo($main);
@@ -69,6 +72,18 @@
         $('.refreshLink').on('click', function(event) {
           event.preventDefault();
           printTweets('all');
+        });
+        
+        $('input').keypress(function(event) {
+          if (event.which === 13) {
+            window.visitor = 'guest';
+            if (!streams.users[window.visitor]) {
+              streams.users[window.visitor] = [];
+            }
+            writeTweet($(this).val());
+            $(this).val('');
+            printTweets('all');
+          }
         });
       });
 
